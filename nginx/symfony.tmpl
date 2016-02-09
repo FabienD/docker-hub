@@ -1,0 +1,35 @@
+{{ $APP_WEB_DIR := default .Env.APP_WEB_DIR "/var/www/web" }}
+{{ $NGINX_HOST := default .Env.NGINX_HOST "application.dev" }}
+{{ $NGINX_PORT := default .Env.NGINX_PORT "80" }}
+{{ $NGINX_LOG_DIR := default .Env.NGINX_LOG_DIR "/var/log/nginx" }}
+{{ $NGINX_LOG_PREFIX := default .Env.NGINX_LOG_PREFIX "application" }}
+
+upstream php-upstream {
+    server php-fpm:9000;
+}
+
+server {
+    listen {{ $NGINX_PORT }} default_server;
+    server_name {{ $NGINX_HOST }};
+    root {{ $APP_WEB_DIR }};
+
+    location / {
+        try_files $uri @rewriteapp;
+    }
+
+    location @rewriteapp {
+        rewrite ^(.*)$ /app.php/$1 last;
+    }
+
+    location ~ ^/(app|app_dev|config)\.php(/|$) {
+        fastcgi_pass php-upstream;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+        fastcgi_param  SCRIPT_FILENAME  $realpath_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $realpath_root;
+        fastcgi_param HTTPS off;
+    }
+
+    error_log {{ $NGINX_LOG_DIR }}/{{ $NGINX_LOG_PREFIX }}_error.log;
+    access_log {{ $NGINX_LOG_DIR }}/{{ $NGINX_LOG_PREFIX }}_access.log;
+}
