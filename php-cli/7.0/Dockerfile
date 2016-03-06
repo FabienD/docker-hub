@@ -1,4 +1,4 @@
-# PHP 7.x Cli Container
+# PHP 7.0.x Cli Container
 #
 # Version 1.0
 

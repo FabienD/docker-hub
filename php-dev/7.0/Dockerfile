@@ -19,5 +19,5 @@ RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/XDEBUG_2_4_0.zip' -o xd
     && rm -r xdebug-XDEBUG_2_4_0 \
     && docker-php-ext-enable xdebug
 
-# PHP Application configuration (php.ini override + FPM pool configuration)
+# PHP Application configuration (php.ini override)
 ADD php-custom.ini /usr/local/etc/php/conf.d/

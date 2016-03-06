@@ -1,4 +1,4 @@
-# PHP 7.0 FPM Container
+# PHP 7.0.x FPM Container
 #
 # Version 1.0
 
