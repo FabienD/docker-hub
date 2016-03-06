@@ -1,6 +1,6 @@
-# PHP 5.6.x-blackfire FPM Container
 #
-# Version 1.0
+# PHP 5.6.x-blackfire FPM image
+#
 
 FROM myprod/php:5.6
 

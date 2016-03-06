@@ -1,6 +1,6 @@
-# Application container
 #
-# Version 1.0
+# Application image
+#
 
 FROM busybox
 MAINTAINER Fabien D. <fabien@myprod.net>

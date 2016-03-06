@@ -1,6 +1,6 @@
-# PHP 7.0.x FPM Container
 #
-# Version 1.0
+# PHP 7.0.x FPM image
+#
 
 FROM php:7.0-fpm
 

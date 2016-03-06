@@ -1,6 +1,6 @@
-# PHP 5.6.x Cli Container
 #
-# Version 1.0
+# PHP 5.6.x Cli image
+#
 
 FROM php:5.6-cli
 

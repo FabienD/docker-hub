@@ -1,6 +1,6 @@
-# PHP 7.0-dev FPM Container
 #
-# Version 1.0
+# PHP 7.0-dev FPM image
+#
 
 FROM myprod/php:7.0
 

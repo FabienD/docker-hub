@@ -1,6 +1,6 @@
-# Gulp Container
 #
-# Version 1.0
+# Gulp image
+#
 
 FROM node:5.7
 

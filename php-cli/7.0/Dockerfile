@@ -1,6 +1,6 @@
-# PHP 7.0.x Cli Container
 #
-# Version 1.0
+# PHP 7.0.x Cli image
+#
 
 FROM php:7.0-cli
 

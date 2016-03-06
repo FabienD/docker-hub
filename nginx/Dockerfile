@@ -1,6 +1,6 @@
-# Nginx Container
 #
-# Version 1.0
+# Nginx image
+#
 
 FROM nginx
 
@@ -19,7 +19,10 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize
 
 RUN mkdir -p ${APP_BASE_DIR:-/var/www/} \
     && mkdir -p /etc/nginx/sites-enabled/ \
-    && usermod -u ${DOCKER_USER_ID:-1000} www-data \ 
-    && dockerize \
+    mkdir -p ${APP_BASE_DIR:-/var/www/app/logs/nginx/} \
+    && usermod -u ${DOCKER_USER_ID:-1000} www-data
+
+CMD dockerize \
     -template /etc/nginx/nginx.tmpl:/etc/nginx/nginx.conf \
-    -template /etc/nginx/symfony.tmpl:/etc/nginx/sites-enabled/symfony.conf
+    -template /etc/nginx/symfony.tmpl:/etc/nginx/sites-enabled/symfony.conf \
+    && nginx -g "daemon off;"

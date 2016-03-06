@@ -1,6 +1,6 @@
-# PHP 5.6.x FPM Container
 #
-# Version 1.0
+# PHP 5.6.x FPM image
+#
 
 FROM php:5.6-fpm
 
