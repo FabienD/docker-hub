@@ -1,8 +1,8 @@
-# PHP 5.6.x FPM Container
+# PHP 7.0 FPM Container
 #
 # Version 1.0
 
-FROM php:5.6-fpm
+FROM php:7.0-fpm
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 

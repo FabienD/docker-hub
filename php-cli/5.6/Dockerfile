@@ -1,8 +1,8 @@
-# PHP 5.6.x FPM Container
+# PHP 5.6.x Cli Container
 #
 # Version 1.0
 
-FROM php:5.6-fpm
+FROM php:5.6-cli
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
@@ -26,9 +26,8 @@ RUN curl -sS https://getcomposer.org/installer | php \
     -- --install-dir=${COMPOSER_HOME:-/usr/local/bin} \
     --filename=composer
 
-# PHP Application configuration (php.ini override + FPM pool configuration)
+# PHP Application configuration (php.ini override)
 ADD php-custom.ini /usr/local/etc/php/conf.d/
-ADD symfony.pool.conf /etc/php5/fpm/pool.d/
 
 RUN usermod -u ${DOCKER_USER_ID:-1000} www-data \
     && mkdir -p ${APP_BASE_DIR:-/var/www/}

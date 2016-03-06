@@ -1,8 +1,8 @@
-# PHP 7.x Container
+# PHP 7.x Cli Container
 #
 # Version 1.0
 
-FROM php:7-fpm
+FROM php:7.0-cli
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
         libzip-dev \
         git \
+        unzip \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) mcrypt gd opcache mbstring \
@@ -25,10 +26,8 @@ RUN curl -sS https://getcomposer.org/installer | php \
     -- --install-dir=${COMPOSER_HOME:-/usr/local/bin} \
     --filename=composer
 
-# PHP Application configuration (php.ini override + FPM pool configuration)
-ADD symfony.ini /etc/php5/fpm/conf.d/
-ADD symfony.ini /etc/php5/cli/conf.d/
-ADD symfony.pool.conf /etc/php5/fpm/pool.d/
+# PHP Application configuration (php.ini override)
+ADD php-custom.ini /usr/local/etc/php/conf.d/
 
 RUN usermod -u ${DOCKER_USER_ID:-1000} www-data \
     && mkdir -p ${APP_BASE_DIR:-/var/www/}
