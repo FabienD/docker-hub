@@ -13,13 +13,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpng12-dev \
         libpq-dev \
         libzip-dev \
+        libicu-dev \
         git \
         unzip \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) mcrypt gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql \
-    && docker-php-ext-install zip bcmath
+    && docker-php-ext-install zip bcmath intl
 
 # Composer installation
 RUN curl -sS https://getcomposer.org/installer | php \
