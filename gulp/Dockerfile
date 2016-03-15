@@ -13,8 +13,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install Gulp & Bower
 RUN npm install -gq gulp bower
 
-# Install Gem Sass
-RUN gem install sass
+# Install Gem Sass Compass
+RUN gem install sass compass
 
-RUN mkdir -p ${APP_BASE_DIR:-/var/www/}
+RUN usermod -u ${DOCKER_USER_ID:-1000} www-data \
+    && mkdir -p ${APP_BASE_DIR:-/var/www/}
+
 WORKDIR ${APP_BASE_DIR:-/var/www/}
