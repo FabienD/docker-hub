@@ -30,6 +30,7 @@ server {
         fastcgi_param  SCRIPT_FILENAME  $realpath_root$fastcgi_script_name;
         fastcgi_param DOCUMENT_ROOT $realpath_root;
         fastcgi_param HTTPS off;
+        fastcgi_read_timeout 240;
     }
 
     error_log {{ $NGINX_LOG_DIR }}/{{ $NGINX_LOG_PREFIX }}_error.log;
