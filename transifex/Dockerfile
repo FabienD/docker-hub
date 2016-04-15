@@ -13,3 +13,5 @@ RUN easy_install pip \
 RUN mkdir -p ${APP_BASE_DIR:-/var/www/}
 
 WORKDIR ${APP_BASE_DIR:-/var/www/}
+
+ENTRYPOINT ["tx"]
