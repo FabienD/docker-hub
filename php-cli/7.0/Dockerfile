@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
         libzip-dev \
         libicu-dev \
+	libxml2-dev \
         git \
         unzip \
         postgresql-client-9.4 \
@@ -22,7 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) mcrypt gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql \
-    && docker-php-ext-install zip bcmath intl exif
+    && docker-php-ext-install zip bcmath intl exif soap
 
 # Composer installation
 RUN curl -sS https://getcomposer.org/installer | php \
