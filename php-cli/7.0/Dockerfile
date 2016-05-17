@@ -6,7 +6,9 @@ FROM php:7.0-cli
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+    && apt-get update && apt-get install -y --no-install-recommends \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
@@ -14,10 +16,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
         libzip-dev \
         libicu-dev \
-	libxml2-dev \
+	    libxml2-dev \
         git \
         unzip \
-        postgresql-client-9.4 \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
