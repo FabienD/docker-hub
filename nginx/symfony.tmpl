@@ -4,7 +4,7 @@
 {{ $NGINX_LOG_DIR := default .Env.NGINX_LOG_DIR "/var/log/nginx" }}
 {{ $NGINX_LOG_PREFIX := default .Env.NGINX_LOG_PREFIX "application" }}
 {{ $NGINX_SYMFONY_ENV := default .Env.NGINX_SYMFONY_ENV "dev" }}
-{{ $NGINX_STATUS_ALLOWED_IP := default .Env.NGINX_STATUS_ALLOWED_IP "192.168.99.1/24" }}
+{{ $NGINX_STATUS_ALLOWED_DIRECTIVES := default .Env.NGINX_STATUS_ALLOWED_DIRECTIVES "allow 172.16.6.1/24; allow 192.168.99.1/24;" }}
 
 upstream php-upstream {
     server php-fpm:9000;
@@ -19,7 +19,7 @@ server {
       stub_status   on;
       access_log    off;
 
-      allow {{ $NGINX_STATUS_ALLOWED_IP }};
+      {{ $NGINX_STATUS_ALLOWED_DIRECTIVES }}
       deny all;
     }
 
