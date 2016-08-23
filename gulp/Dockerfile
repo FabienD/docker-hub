@@ -2,7 +2,7 @@
 # Gulp image
 #
 
-FROM node:5.7
+FROM node:6.4
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
