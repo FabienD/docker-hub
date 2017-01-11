@@ -19,6 +19,7 @@ http {
   error_log off;
   gzip on;
   gzip_disable "msie6";
+  client_max_body_size 100M;
   include /etc/nginx/conf.d/*.conf;
   include /etc/nginx/sites-enabled/*;
 }
