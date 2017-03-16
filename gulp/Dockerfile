@@ -16,7 +16,6 @@ RUN npm install -gq gulp bower
 # Install Gem Sass Compass
 RUN gem install sass
 
-RUN usermod -u ${DOCKER_USER_ID:-1000} www-data \
-    && mkdir -p ${APP_BASE_DIR:-/var/www/}
+RUN mkdir -p ${APP_BASE_DIR:-/var/www/}
 
 WORKDIR ${APP_BASE_DIR:-/var/www/}
