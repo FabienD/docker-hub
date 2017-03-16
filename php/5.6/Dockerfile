@@ -28,8 +28,8 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) mcrypt gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql \
-    && docker-php-ext-install zip bcmath intl exif soap \
-    && docker-php-ext-enable ssh2 xsl
+    && docker-php-ext-install zip bcmath intl exif soap xsl \
+    && docker-php-ext-enable ssh2
 
 # Composer installation
 RUN curl -sS https://getcomposer.org/installer | php \
