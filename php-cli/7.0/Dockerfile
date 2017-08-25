@@ -2,7 +2,7 @@
 # PHP 7.0.x Cli image
 #
 
-FROM php:7.0.17-cli
+FROM php:7.0.22-cli
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
@@ -26,7 +26,7 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) mcrypt gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql \
-    && docker-php-ext-install zip bcmath intl exif soap xsl
+    && docker-php-ext-install zip bcmath intl exif soap xsl sockets
 
 # Composer installation
 RUN curl -sS https://getcomposer.org/installer | php \
