@@ -2,20 +2,22 @@
 # Nginx image
 #
 
-FROM nginx
+FROM nginx:1.13
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 ADD nginx.tmpl /etc/nginx/
 ADD symfony.tmpl /etc/nginx/
 
-RUN wget https://github.com/jwilder/dockerize/releases/download/v0.3.0/dockerize-linux-amd64-v0.3.0.tar.gz \
-    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.3.0.tar.gz \
-    && rm dockerize-linux-amd64-v0.3.0.tar.gz
+
+RUN wget https://github.com/jwilder/dockerize/releases/download/v0.5.0/dockerize-linux-amd64-v0.5.0.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.5.0.tar.gz \
+    && rm dockerize-linux-amd64-v0.5.0.tar.gz
 
 RUN mkdir -p ${APP_BASE_DIR:-/var/www/} \
     && mkdir -p /etc/nginx/sites-enabled/ \

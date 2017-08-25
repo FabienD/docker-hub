@@ -7,7 +7,7 @@ FROM node:6
 MAINTAINER Fabien D. <fabien@myprod.net>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    rubygems build-essential ruby-dev \
+    rubygems build-essential ruby-dev ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Gulp & Bower
