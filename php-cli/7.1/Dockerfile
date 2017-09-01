@@ -2,7 +2,7 @@
 # PHP 7.1.x Cli image
 #
 
-FROM php:7.1.8-cli
+FROM php:7.1-cli
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 

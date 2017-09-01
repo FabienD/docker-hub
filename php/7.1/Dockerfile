@@ -2,7 +2,7 @@
 # PHP 7.1.x FPM image
 #
 
-FROM php:7.1.8-fpm
+FROM php:7.1-fpm
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
