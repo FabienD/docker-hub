@@ -36,7 +36,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 
 # PHP Application configuration (php.ini override + FPM pool configuration)
 ADD php-custom.ini /usr/local/etc/php/conf.d/
-ADD symfony.pool.conf /etc/php5/fpm/pool.d/
+ADD www.conf /usr/local/etc/php-fpm.d/
 
 RUN usermod -u ${DOCKER_USER_ID:-1000} www-data \
     && mkdir -p ${APP_BASE_DIR:-/var/www/}
