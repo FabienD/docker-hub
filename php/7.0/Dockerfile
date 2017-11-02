@@ -18,6 +18,7 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/
         libicu-dev \
         libxml2-dev \
         libxslt-dev \
+        libssh2-1-dev \
         ssh \
         git \
         unzip \
