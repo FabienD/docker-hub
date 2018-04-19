@@ -25,7 +25,7 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/
         ca-certificates \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a ssh2-1.1.2 \
-    && pecl install -a apcu-5.1.8 \
+    && pecl install -a apcu-5.1.11 \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) mcrypt gd opcache mbstring \
