@@ -2,18 +2,15 @@
 # PHP 7.1.x FPM image
 #
 
-FROM php:7.1-fpm
+FROM php:7.1-fpm-strech
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
-    && curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
-    && apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
-        libpng12-dev \
-        libpq-dev \
+        libpng-dev \
         libzip-dev \
         libicu-dev \
         libxml2-dev \
@@ -23,6 +20,11 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/
         git \
         unzip \
         ca-certificates \
+        gnupg \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+    && apt-get update && apt-get install -y --no-install-recommends \
+        libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a ssh2-1.1.2 \
     && pecl install -a apcu-5.1.11 \
