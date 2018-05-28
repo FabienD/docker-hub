@@ -2,7 +2,7 @@
 # PHP 7.1.x FPM image
 #
 
-FROM php:7.1-fpm-strech
+FROM php:7.1-fpm-stretch
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 

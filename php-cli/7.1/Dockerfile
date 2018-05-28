@@ -2,7 +2,7 @@
 # PHP 7.1.x Cli image
 #
 
-FROM php:7.1-cli-strech
+FROM php:7.1-cli-stretch
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
