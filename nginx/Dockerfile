@@ -2,7 +2,7 @@
 # Nginx image
 #
 
-FROM nginx:1.13
+FROM nginx:1.15
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
