@@ -7,16 +7,16 @@ FROM myprod/php:7.1
 MAINTAINER Fabien D. <fabien@myprod.net>
 
 # Xdebug install
-RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/2.6.0.zip' -o xdebug.zip \
+RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/2.6.1.zip' -o xdebug.zip \
     && unzip xdebug.zip \
     && ( \
-        cd xdebug-2.6.0 \
+        cd xdebug-2.6.1 \
         && phpize \
         && ./configure --enable-xdebug \
         && make -j$(nproc) \
         && make install \
     ) \
-    && rm -r xdebug-2.6.0 \
+    && rm -r xdebug-2.6.1 \
     && docker-php-ext-enable xdebug
 
 # PHP Application configuration (php.ini override)
