@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql \
     && docker-php-ext-install zip bcmath intl exif soap xsl sockets \
-    && docker-php-ext-enable ssh2 apcu mcrypt
+    && docker-php-ext-enable apcu
 
 # Composer installation
 RUN curl -sS https://getcomposer.org/installer | php \
