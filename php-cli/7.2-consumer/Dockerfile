@@ -8,6 +8,6 @@ FROM myprod/php:7.2-cli
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
-ADD https://github.com/ricbra/rabbitmq-cli-consumer/releases/download/1.4.2/rabbitmq-cli-consumer-linux-amd64.tar.gz /usr/local/bin/rabbitmq-cli-consumer-linux-amd64.tar.gz
+ADD https://github.com/corvus-ch/rabbitmq-cli-consumer/releases/download/2.3.2/rabbitmq-cli-consumer_2.3.2_linux_amd64.tar.gz /usr/local/bin/rabbitmq-cli-consumer-linux-amd64.tar.gz
 
 RUN cd /usr/local/bin && tar -xzvf rabbitmq-cli-consumer-linux-amd64.tar.gz && chmod u+x rabbitmq-cli-consumer
