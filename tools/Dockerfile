@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rubygems build-essential ruby-dev ca-certificates \
     && rm -rf /var/lib/apt/lists/* \
     # Install Gulp & Bower
-    && npm install -gq gulp yarn \
+    && npm install -gq gulp \
     # Install Gem Sass
     && gem install -N sass \
     # Work dir
