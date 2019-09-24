@@ -2,7 +2,7 @@
 # PHP 7.2.x Cli image
 #
 
-FROM php:7.2-cli-stretch
+FROM php:7.2-cli-buster
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         ca-certificates \
         gnupg \
-    && echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && curl "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | apt-key add - \
     && apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
