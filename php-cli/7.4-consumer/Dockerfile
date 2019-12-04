@@ -4,7 +4,7 @@
 # @see https://github.com/ricbra/rabbitmq-cli-consumer
 #
 
-FROM myprod/php:7.3-cli
+FROM myprod/php:7.4-cli
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
