@@ -2,7 +2,7 @@
 # PHP 7.4.x Cli image
 #
 
-FROM php:74-cli-buster
+FROM php:7.4-cli-buster
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
