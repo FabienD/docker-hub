@@ -1,8 +1,8 @@
 #
-# PHP 7.3-dev FPM image
+# PHP 7.4-dev FPM image
 #
 
-FROM myprod/php:7.3
+FROM myprod/php:7.4
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
