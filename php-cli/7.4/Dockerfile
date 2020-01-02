@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libxml2-dev \
         libxslt-dev \
         libssh2-1-dev \
+        libonig-dev \
         ssh \
         git \
         unzip \
