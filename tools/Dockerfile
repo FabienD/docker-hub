@@ -2,7 +2,7 @@
 # Node, Gulp, Yarn tools images
 #
 
-FROM node:11
+FROM node:13
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
