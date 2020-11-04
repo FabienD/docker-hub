@@ -36,10 +36,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && docker-php-ext-install zip bcmath intl exif soap xsl sockets \
     && docker-php-ext-enable apcu mcrypt
 
-# Composer installation
+# Composer installation (v1)
 RUN curl -sS https://getcomposer.org/installer | php \
     -- --install-dir=${COMPOSER_HOME:-/usr/local/bin} \
-    --filename=composer
+    --filename=composer --1
 
 # PHP Application configuration (php.ini override + FPM pool configuration)
 ADD php-custom.ini /usr/local/etc/php/conf.d/
