@@ -4,7 +4,7 @@
 
 FROM myprod/php:7.3
 
-MAINTAINER Fabien D. <fabien@myprod.net>
+LABEL maintainer="fabien@myprod.net"
 
 # Xdebug install
 RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/2.9.4.zip' -o xdebug.zip \

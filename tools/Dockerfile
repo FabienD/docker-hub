@@ -4,7 +4,7 @@
 
 FROM node:13
 
-MAINTAINER Fabien D. <fabien@myprod.net>
+LABEL maintainer="fabien@myprod.net"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     rubygems build-essential ruby-dev ca-certificates \

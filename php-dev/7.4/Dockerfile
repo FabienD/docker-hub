@@ -4,19 +4,19 @@
 
 FROM myprod/php:7.4
 
-MAINTAINER Fabien D. <fabien@myprod.net>
+LABEL maintainer="fabien@myprod.net"
 
 # Xdebug install
-RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/2.9.4.zip' -o xdebug.zip \
+RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/3.0.0.zip' -o xdebug.zip \
     && unzip xdebug.zip \
     && ( \
-        cd xdebug-2.9.4 \
+        cd xdebug-3.0.0 \
         && phpize \
         && ./configure --enable-xdebug \
         && make -j$(nproc) \
         && make install \
     ) \
-    && rm -r xdebug-2.9.4 \
+    && rm -r xdebug-3.0.0 \
     && docker-php-ext-enable xdebug
 
 # PHP Application configuration (php.ini override)

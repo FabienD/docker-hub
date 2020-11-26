@@ -4,7 +4,7 @@
 
 FROM myprod/php:7.3
 
-MAINTAINER Fabien D. <fabien@myprod.net>
+LABEL maintainer="fabien@myprod.net"
 
 # BlackFire install
 RUN export VERSION=`php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"` \

@@ -4,7 +4,7 @@
 
 FROM python:3.5
 
-MAINTAINER Fabien D. <fabien@myprod.net>
+LABEL maintainer="fabien@myprod.net"
 
 # Install Transifex clien
 RUN easy_install pip \
