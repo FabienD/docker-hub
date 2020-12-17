@@ -2,7 +2,7 @@
 # Node, Gulp, Yarn tools images
 #
 
-FROM node:13
+FROM node:14
 
 LABEL maintainer="fabien@myprod.net"
 
