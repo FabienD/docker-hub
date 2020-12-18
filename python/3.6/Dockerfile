@@ -39,7 +39,7 @@ RUN usermod -u ${DOCKER_USER_ID:-1000} www-data \
 WORKDIR ${APP_BASE_DIR:-/var/www/}
 
 # Entrypoint & Cmd
-ADD ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+ADD docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT [ "/usr/bin/tini", "--", "/usr/local/bin/docker-entrypoint.sh"]
 
