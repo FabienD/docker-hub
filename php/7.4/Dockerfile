@@ -47,7 +47,9 @@ ADD www.conf /usr/local/etc/php-fpm.d/
 
 # RUN echo "[global]\npid = run/php-fpm.pid\ninclude=etc/php-fpm.d/*.conf\n" > /usr/local/etc/php-fpm.conf
 
-RUN usermod -u ${DOCKER_USER_ID:-1000} www-data \
-    && mkdir -p ${APP_BASE_DIR:-/var/www/}
+# Add USER and APP dir
+RUN useradd myprod --uid ${DOCKER_USER_ID:-1000} -m -s /bin/bash \
+    && mkdir -p ${APP_BASE_DIR:-/var/www/} \
+    && echo 'export PS1=" 🐘 ${PHP_VERSION} | \[\033[1;36m\]\h \[\033[1;34m\]\W\[\033[0;35m\] \[\033[1;36m\]# \[\033[0m\]"' >> /home/myprod/.bashrc
 
 WORKDIR ${APP_BASE_DIR:-/var/www/}

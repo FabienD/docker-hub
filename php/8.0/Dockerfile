@@ -1,8 +1,8 @@
 #
-# PHP 7.4.x Cli image
+# PHP 8.0.x FPM image
 #
 
-FROM php:7.4-cli-buster
+FROM php:8.0-fpm-buster
 
 LABEL maintainer="fabien@myprod.net"
 
@@ -27,8 +27,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
-    && pecl install -a apcu-5.1.18 \
-    && pecl install -a mcrypt-1.0.3 \
+    && pecl install -a apcu-5.1.19 \
+    && pecl install -a mcrypt-1.0.4 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
@@ -36,17 +36,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && docker-php-ext-install zip bcmath intl exif soap xsl sockets \
     && docker-php-ext-enable apcu mcrypt
 
-# Composer installation (v1)
+# Composer installation
 RUN curl -sS https://getcomposer.org/installer | php \
     -- --install-dir=${COMPOSER_HOME:-/usr/local/bin} \
-    --filename=composer --1
+    --filename=composer
 
-# PHP Application configuration (php.ini override)
+# PHP Application configuration (php.ini override + FPM pool configuration)
 ADD php-custom.ini /usr/local/etc/php/conf.d/
+ADD www.conf /usr/local/etc/php-fpm.d/
+
+# RUN echo "[global]\npid = run/php-fpm.pid\ninclude=etc/php-fpm.d/*.conf\n" > /usr/local/etc/php-fpm.conf
 
 # Add USER and APP dir
 RUN useradd myprod --uid ${DOCKER_USER_ID:-1000} -m -s /bin/bash \
     && mkdir -p ${APP_BASE_DIR:-/var/www/} \
     && echo 'export PS1=" 🐘 ${PHP_VERSION} | \[\033[1;36m\]\h \[\033[1;34m\]\W\[\033[0;35m\] \[\033[1;36m\]# \[\033[0m\]"' >> /home/myprod/.bashrc
-    
+
 WORKDIR ${APP_BASE_DIR:-/var/www/}
