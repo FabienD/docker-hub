@@ -50,6 +50,6 @@ ADD www.conf /usr/local/etc/php-fpm.d/
 # Add USER and APP dir
 RUN useradd myprod --uid ${DOCKER_USER_ID:-1000} -m -s /bin/bash \
     && mkdir -p ${APP_BASE_DIR:-/var/www/} \
-    && echo 'export PS1=" 🐘 ${PHP_VERSION} | \[\033[1;36m\]\h \[\033[1;34m\]\W\[\033[0;35m\] \[\033[1;36m\]# \[\033[0m\]"' >> /home/myprod/.bashrc
+    && echo 'export PS1=" 🐘 ${PHP_VERSION} | \[\033[1;35m\]\h \[\033[1;34m\]\W\[\033[0;94m\] \[\033[1;35m\]# \[\033[0m\]"' >> /home/myprod/.bashrc
 
 WORKDIR ${APP_BASE_DIR:-/var/www/}
