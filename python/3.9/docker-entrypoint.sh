@@ -5,7 +5,7 @@ cd /var/www
 
 if [ -f "env/bin/activate" ];
 then
-    echo "Virtualenv found, use it now."
+    echo "Virtualenv found and activated."
     source env/bin/activate
 fi
 
