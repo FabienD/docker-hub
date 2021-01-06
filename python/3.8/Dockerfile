@@ -20,6 +20,10 @@ RUN apt-get update \
         git \
         ssh \
         tini \
+      	# necessary for pg => ld -lcrypto and ls -lssl
+        libssl-dev \
+     	# necessary for pg => ld -lz
+        zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Postgresql 
@@ -27,7 +31,17 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/
     && curl "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | apt-key add - \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        postgresql-client \
+        postgresql-contrib-9.6 \
+        postgresql-server-dev-9.6 \
+        postgresql-pltcl-9.6 \
+    	# we use plpython3u and plpythonu extension so we've to install both
+        postgresql-plpython3-9.6 \
+        postgresql-plpython-9.6 \
+        postgresql-9.6-ip4r \
+        pgxnclient \
+    && pgxn install temporal_tables \
+    && pgxn install url_encode \
+    && pgxn install pg_repack \
     && rm -rf /var/lib/apt/lists/*    
 
 # Python 3 default libraries
