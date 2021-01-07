@@ -20,6 +20,8 @@ RUN apt-get update \
         git \
         ssh \
         tini \
+        libxslt-dev \
+        libxml2-dev \
         # necessary for pg => ld -lcrypto and ls -lssl
         libssl-dev \
      	# necessary for pg => ld -lz
