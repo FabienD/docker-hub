@@ -3,10 +3,10 @@ set -e
 
 cd /var/www
 
-if [ -f "env/bin/activate" ];
+if [ -f "venv/bin/activate" ];
 then
     echo "Virtualenv found and activated."
-    source env/bin/activate
+    source venv/bin/activate
 fi
 
 exec "$@"
