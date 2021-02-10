@@ -47,7 +47,7 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/
     && rm -rf /var/lib/apt/lists/*    
 
 # Python 3 default libraries
-RUN pip install virtualenv --no-cache-dir -U pip
+RUN pip install virtualenv poetry --no-cache-dir -U pip
 
 # Add USER and APP dir
 RUN useradd myprod --uid ${DOCKER_USER_ID:-1000} -m -s /bin/bash \
