@@ -2,7 +2,7 @@
 # Nginx image
 #
 
-FROM nginx:1.14
+FROM nginx:1.20
 
 LABEL maintainer="fabien@myprod.net"
 
