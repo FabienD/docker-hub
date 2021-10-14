@@ -4,7 +4,7 @@
 
 ARG PYTHON_VER=3.6
 
-FROM python:${PYTHON_VER}-slim-buster
+FROM python:${PYTHON_VER}-slim-bullseye
 
 LABEL maintainer="fabien@myprod.net"
 
@@ -29,7 +29,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Postgresql 
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && curl "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | apt-key add - \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -38,7 +38,6 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/
         postgresql-pltcl-9.6 \
     	# we use plpython3u and plpythonu extension so we've to install both
         postgresql-plpython3-9.6 \
-        postgresql-plpython-9.6 \
         postgresql-9.6-ip4r \
         pgxnclient \
     && pgxn install temporal_tables \
@@ -47,7 +46,7 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/
     && rm -rf /var/lib/apt/lists/*    
 
 # Python 3 default libraries
-RUN pip install bpython virtualenv poetry blackfire --no-cache-dir -U pip
+RUN pip install bpython virtualenv jupyter poetry blackfire --no-cache-dir -U pip
 
 # Blackfire.io
 RUN mkdir -p /tmp/blackfire \
