@@ -2,7 +2,7 @@
 # PHP 8.0.x Cli image
 #
 
-FROM php:8.0-cli-buster
+FROM php:8.0-cli-bullseye
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 

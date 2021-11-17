@@ -2,7 +2,7 @@
 # PHP 8.0.x FPM image
 #
 
-FROM php:8.0-fpm-buster
+FROM php:8.0-fpm-bullseye
 
 LABEL maintainer="fabien@myprod.net"
 
@@ -22,12 +22,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         ca-certificates \
         gnupg \
-    && echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && curl "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | apt-key add - \
     && apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
-    && pecl install -a apcu-5.1.20 \
+    && pecl install -a apcu-5.1.21 \
     && pecl install -a mcrypt-1.0.4 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \

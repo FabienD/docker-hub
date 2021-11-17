@@ -2,7 +2,7 @@
 # PHP 7.4.x Cli image
 #
 
-FROM php:7.4-cli-buster
+FROM php:7.4-cli-bullseye
 
 LABEL maintainer="fabien@myprod.net"
 
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         ca-certificates \
         gnupg \
-    && echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && curl "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | apt-key add - \
     && apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
