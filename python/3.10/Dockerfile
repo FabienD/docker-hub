@@ -46,7 +46,7 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main" > /et
     && rm -rf /var/lib/apt/lists/*    
 
 # Python 3 default libraries
-RUN pip install bpython virtualenv jupyter poetry blackfire --no-cache-dir -U pip
+RUN pip install bpython virtualenv jupyter poetry black blackfire --no-cache-dir -U pip
 
 # Blackfire.io
 RUN mkdir -p /tmp/blackfire \

@@ -3,12 +3,19 @@ set -e
 
 cd /var/www
 
-if [ -f "venv/bin/activate" ];
-then
-    echo "Virtualenv found and activated."
-    source venv/bin/activate
-fi
+# Try to find and activate a virtualenv
+venv_names=(".venv" "venv" ".virtualenv" "virtualenv")
 
+for name in ${venv_names[@]}; do
+    if [ -f "$name/bin/activate" ];
+    then
+        echo "Virtualenv found in $name. Let's activate it."
+        source $name/bin/activate
+        break
+    fi
+done
+
+# PGP env keys are set from Docker secrets
 if [ -f "/run/secrets/pgp_public_key" ];
 then
     export PGP_PUBLIC_KEY=`cat /run/secrets/pgp_public_key`
