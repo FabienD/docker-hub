@@ -1,22 +1,22 @@
 #
-# PHP 7.3-dev FPM image
+# PHP 8.1-dev FPM image
 #
 
-FROM myprod/php:7.3-fpm
+FROM myprod/php:8.1-fpm
 
-LABEL maintainer="fabien@myprod.net"
+MAINTAINER Fabien D. <fabien@myprod.net>
 
 # Xdebug install
-RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/2.9.4.zip' -o xdebug.zip \
+RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/3.1.2.zip' -o xdebug.zip \
     && unzip xdebug.zip \
     && ( \
-        cd xdebug-2.9.4 \
+        cd xdebug-3.1.2 \
         && phpize \
         && ./configure --enable-xdebug \
         && make -j$(nproc) \
         && make install \
     ) \
-    && rm -r xdebug-2.9.4 \
+    && rm -r xdebug-3.1.2 \
     && docker-php-ext-enable xdebug
 
 # PHP Application configuration (php.ini override)

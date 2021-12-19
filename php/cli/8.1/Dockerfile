@@ -1,8 +1,8 @@
 #
-# PHP 8.0.x Cli image
+# PHP 8.1.x Cli image
 #
 
-FROM php:8.0-cli-bullseye
+FROM php:8.1-cli-bullseye
 
 MAINTAINER Fabien D. <fabien@myprod.net>
 
@@ -28,13 +28,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.20 \
-    && pecl install -a mcrypt-1.0.4 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql \
     && docker-php-ext-install zip bcmath intl exif soap xsl sockets \
-    && docker-php-ext-enable apcu mcrypt
+    && docker-php-ext-enable apcu
 
 # Composer installation (v1)
 RUN curl -sS https://getcomposer.org/installer | php \

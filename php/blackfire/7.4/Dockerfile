@@ -2,7 +2,7 @@
 # PHP 7.4.x-blackfire FPM image
 #
 
-FROM myprod/php:7.4
+FROM myprod/php:7.4-fpm
 
 LABEL maintainer="fabien@myprod.net"
 

@@ -2,7 +2,7 @@
 # PHP 7.0-dev FPM image
 #
 
-FROM myprod/php:7.0
+FROM myprod/php:7.0-fpm
 
 LABEL maintainer="fabien@myprod.net"
 
