@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
-    && pecl install -a apcu-5.1.20 \
+    && pecl install -a apcu-5.1.21 \
     && pecl install -a mcrypt-1.0.4 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
