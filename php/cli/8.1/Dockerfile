@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Composer installation (v1)
 RUN curl -sS https://getcomposer.org/installer | php \
     -- --install-dir=${COMPOSER_HOME:-/usr/local/bin} \
-    --filename=composer --1
+    --filename=composer
 
 # PHP Application configuration (php.ini override)
 ADD php-custom.ini /usr/local/etc/php/conf.d/
