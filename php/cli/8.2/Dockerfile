@@ -1,8 +1,8 @@
 #
-# PHP 8.1.x FPM image
+# PHP 8.1.x Cli image
 #
 
-FROM php:8.1-fpm-bullseye
+FROM php:8.2.0RC2-cli-bullseye
 
 LABEL maintainer="fabien@myprod.net"
 
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         ca-certificates \
         gnupg \
-    && echo "deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && curl "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | apt-key add - \
     && apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
@@ -40,17 +40,12 @@ RUN curl -sS https://getcomposer.org/installer | php \
     -- --install-dir=${COMPOSER_HOME:-/usr/local/bin} \
     --filename=composer
 
-# PHP Application configuration (php.ini override + FPM pool configuration)
+# PHP Application configuration (php.ini override)
 ADD php-custom.ini /usr/local/etc/php/conf.d/
-ADD www.conf /usr/local/etc/php-fpm.d/
 
-# RUN echo "[global]\npid = run/php-fpm.pid\ninclude=etc/php-fpm.d/*.conf\n" > /usr/local/etc/php-fpm.conf
-
-# Add USER and APP dir
 RUN useradd myprod --uid ${DOCKER_USER_ID:-1000} -m -s /bin/bash \
     && mkdir -p ${APP_BASE_DIR:-/var/www/} \
-    && echo 'export PS1=" 🐘 ${PHP_VERSION} | \[\033[1;35m\]\h \[\033[1;34m\]\W\[\033[0;94m\] \[\033[1;35m\]# \[\033[0m\]"' \
-     >> /home/myprod/.bashrc  \
-    >> /root/.bashrc
+    && echo 'export PS1=" 🐘 ${PHP_VERSION} | \[\033[1;35m\]\h \[\033[1;34m\]\W\[\033[0;94m\] \[\033[1;35m\]# \[\033[0m\]"'  \
+    >> /home/myprod/.bashrc
 
 WORKDIR ${APP_BASE_DIR:-/var/www/}
