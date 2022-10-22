@@ -2,7 +2,7 @@
 # PHP 8.1.x FPM image
 #
 
-FROM php:8.2.0RC2-fpm-bullseye
+FROM php:8.2.0RC4-fpm-bullseye
 
 LABEL maintainer="fabien@myprod.net"
 
