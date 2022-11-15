@@ -1,5 +1,5 @@
 #
-# PHP 8.1-dev FPM image
+# PHP 8.2-dev FPM image
 #
 
 FROM myprod/php:8.2-fpm

@@ -1,8 +1,8 @@
 #
-# PHP 8.1.x Cli image
+# PHP 8.2.x Cli image
 #
 
-FROM php:8.2.0RC5-cli-bullseye
+FROM php:8.2.0RC6-cli-bullseye
 
 LABEL maintainer="fabien@myprod.net"
 
@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libxslt-dev \
         libssh2-1-dev \
         libonig-dev \
+        libmagickwand-dev \
         ssh \
         git \
         unzip \
@@ -28,12 +29,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.22 \
+    && pecl install -a imagick-3.7.0 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql \
     && docker-php-ext-install zip bcmath intl exif soap xsl sockets \
-    && docker-php-ext-enable apcu
+    && docker-php-ext-enable apcu imagick
 
 # Composer installation (v1)
 RUN curl -sS https://getcomposer.org/installer | php \
