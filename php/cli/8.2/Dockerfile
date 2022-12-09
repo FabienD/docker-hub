@@ -2,7 +2,7 @@
 # PHP 8.2.x Cli image
 #
 
-FROM php:8.2.0RC7-cli-bullseye
+FROM php:8.2.0-cli-bullseye
 
 LABEL maintainer="fabien@myprod.net"
 
