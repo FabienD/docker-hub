@@ -30,12 +30,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.22 \
     && pecl install -a imagick-3.7.0 \
+    && pecl install -a grpc-1.51.1 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql \
     && docker-php-ext-install zip bcmath intl exif soap xsl sockets \
-    && docker-php-ext-enable apcu imagick
+    && docker-php-ext-enable apcu imagick grpc
 
 # Composer installation (v1)
 RUN curl -sS https://getcomposer.org/installer | php \
