@@ -4,7 +4,7 @@
 #   With replibyte tool
 # 
 
-ARG PG_VER=14
+ARG PG_VER=15
 
 FROM timescale/timescaledb:latest-pg${PG_VER}
 
