@@ -2,7 +2,7 @@
 # PHP 8.2.x FPM image
 #
 
-FROM php:8.2.0-fpm-bullseye
+FROM php:8.2-fpm-bullseye
 
 LABEL maintainer="fabien@myprod.net"
 
@@ -30,8 +30,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.22 \
     && pecl install -a imagick-3.7.0 \
-    && pecl install -a grpc-1.51.1 \
-    && pecl install -a protobuf-3.21.12 \
+    && pecl install -a grpc-1.55.0 \
+    && pecl install -a protobuf-3.23.2 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
