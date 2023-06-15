@@ -7,16 +7,16 @@ FROM myprod/php:8.2-fpm
 LABEL maintainer="fabien@myprod.net"
 
 # Xdebug install
-RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/3.2.0.zip' -o xdebug.zip \
+RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/3.2.1.zip' -o xdebug.zip \
     && unzip xdebug.zip \
     && ( \
-        cd xdebug-3.2.0 \
+        cd xdebug-3.2.1 \
         && phpize \
         && ./configure --enable-xdebug \
         && make -j$(nproc) \
         && make install \
     ) \
-    && rm -r xdebug-3.2.0 \
+    && rm -r xdebug-3.2.1 \
     && docker-php-ext-enable xdebug
 
 # PHP Application configuration (php.ini override)

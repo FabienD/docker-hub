@@ -4,7 +4,7 @@
 
 ARG PYTHON_VER=3.11
 
-FROM python:${PYTHON_VER}-slim-bullseye
+FROM python:${PYTHON_VER}-slim-bookworm
 
 LABEL maintainer="fabien@myprod.net"
 
