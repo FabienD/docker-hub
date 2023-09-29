@@ -1,8 +1,8 @@
 #
-# PHP 8.2.x FPM image
+# PHP 8.3.x FPM image
 #
 
-FROM php:8.2-fpm-bookworm
+FROM php:8.3-rc-fpm-bookworm
 
 LABEL maintainer="fabien@myprod.net"
 
