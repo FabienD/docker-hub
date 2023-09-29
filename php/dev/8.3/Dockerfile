@@ -2,7 +2,7 @@
 # PHP 8.2-dev FPM image
 #
 
-FROM myprod/php:8.2-fpm
+FROM myprod/php:8.3-fpm
 
 LABEL maintainer="fabien@myprod.net"
 
