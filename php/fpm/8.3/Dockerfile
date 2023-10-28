@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.22 \
-    && pecl install -a imagick-3.7.0 \
+    #&& pecl install -a imagick-3.7.0 \
     && pecl install -a grpc-1.59.1 \
     && pecl install -a protobuf-3.24.4 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql \
     && docker-php-ext-install zip bcmath intl exif soap xsl sockets \
-    && docker-php-ext-enable apcu imagick grpc protobuf
+    && docker-php-ext-enable apcu grpc protobuf
 
 # Composer installation (v1)
 RUN curl -sS https://getcomposer.org/installer | php \
