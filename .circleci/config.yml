@@ -17,12 +17,12 @@ jobs:
       - run:
           name: Install Just
           command: |
-              just --version || curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to /usr/local/bin
+            sudo apt install just
       - run:
-           name: Build Docker image
-           command: |
-              just build_${BUILD_TYPE} ${BUILD_VERSION}
-        
+          name: Build Docker image
+          command: |
+            just build_${BUILD_TYPE} ${BUILD_VERSION}
+
 workflows:
   build_images:
     jobs:
@@ -54,7 +54,7 @@ workflows:
           name: Build PHP FPM dev ?
           type: approval
       - just_build:
-          name: Build PHP FPM << matrix.BUILD_VERSION >>
+          name: Build PHP FPM Dev << matrix.BUILD_VERSION >>
           requires:
             - Build PHP FPM dev ?
             - Build PHP FPM << matrix.BUILD_VERSION >>
