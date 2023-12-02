@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            just build_${BUILD_TYPE} ${BUILD_VERSION}
+            just build_<< parameters.BUILD_TYPE >> << parameters.BUILD_VERSION >>
 
 workflows:
   build_images:
