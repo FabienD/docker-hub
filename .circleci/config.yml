@@ -13,7 +13,8 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: Install Just
           command: |
@@ -25,6 +26,10 @@ jobs:
           name: Build Docker image
           command: |
             just build_<< parameters.BUILD_TYPE >> << parameters.BUILD_VERSION >>
+      - run:
+          name: Push Docker image
+          command: |
+            just push_<< parameters.BUILD_TYPE >> << parameters.BUILD_VERSION >>
 
 workflows:
   build_images:
@@ -40,6 +45,18 @@ workflows:
             parameters:
               BUILD_VERSION: ["3.12"]
               BUILD_TYPE: ["python"]
+
+      - start_node:
+          name: Build Node ?
+          type: approval
+      - just_build:
+          name: Build Node << matrix.BUILD_VERSION >>
+          requires:
+            - Build Node ?
+          matrix:
+            parameters:
+              BUILD_VERSION: ["18"]
+              BUILD_TYPE: ["node"]
 
       - start_php_fpm:
           name: Build PHP FPM ?
