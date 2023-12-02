@@ -1,6 +1,11 @@
 version: 2.1
 jobs:
-  build:
+  just_build:
+    parameters:
+      BUILD_VERSION: 
+        type: string
+      BUILD_TYPE:
+        type: string
     docker:
       - image: cimg/base:2023.12
         auth:
@@ -9,25 +14,64 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      
-      # - restore_cache:
-      #     keys:
-      #       - v1-{{ .Branch }}
-      #     paths:
-      #       - /caches/app.tar
-      # - run:
-      #     name: Load Docker image layer cache
-      #     command: |
-      #       set +o pipefail
-      #       docker load -i /caches/app.tar | true
-      # - run:
-      #     name: Run tests
-      #     command: |
-      #       docker-compose -f ./docker-compose.test.yml up
-      # - run:
-      #     name: Build and Push application Docker image
-      #     command: |
-      #       TAG=0.1.$CIRCLE_BUILD_NUM
-      #       docker build -t $DOCKERHUB_USERNAME/circleci-docker-example:$TAG .
-      #       echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
-      #       docker push $DOCKERHUB_USERNAME/circleci-docker-example:$TAG
+      - run:
+          name: Install Just
+          command: |
+              just --version || curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to /usr/local/bin
+      - run:
+           name: Build Docker image
+           command: |
+              just build_${BUILD_TYPE} ${BUILD_VERSION}
+        
+workflows:
+  build_images:
+    jobs:
+      - start_python:
+          name: Build Python ?
+          type: approval
+      - just_build:
+          name: Build Python << matrix.BUILD_VERSION >>
+          requires:
+            - Build Python ?
+          matrix:
+            parameters:
+              BUILD_VERSION: ["3.12"]
+              BUILD_TYPE: ["python"]
+
+      - start_php_fpm:
+          name: Build PHP FPM ?
+          type: approval
+      - just_build:
+          name: Build PHP FPM << matrix.BUILD_VERSION >>
+          requires:
+            - Build PHP FPM ?
+          matrix:
+            parameters:
+              BUILD_VERSION: ["8.3"]
+              BUILD_TYPE: ["php_fpm"]
+
+      - start_php_fpm_dev:
+          name: Build PHP FPM dev ?
+          type: approval
+      - just_build:
+          name: Build PHP FPM << matrix.BUILD_VERSION >>
+          requires:
+            - Build PHP FPM dev ?
+            - Build PHP FPM << matrix.BUILD_VERSION >>
+          matrix:
+            parameters:
+              BUILD_VERSION: ["8.3"]
+              BUILD_TYPE: ["dev"]
+
+      - start_php_cli:
+          name: Build PHP CLI ?
+          type: approval
+      - just_build:
+          requires:
+            - Build PHP CLI ?
+          matrix:
+            parameters:
+              BUILD_VERSION: ["8.3"]
+              BUILD_TYPE: ["cli"]
+        
+          
