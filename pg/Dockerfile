@@ -1,6 +1,6 @@
 ARG PG_VERSION
 
-FROM debian:slim-bookworm as base
+FROM debian:bookworm-slim as base
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
