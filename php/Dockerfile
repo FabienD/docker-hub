@@ -55,7 +55,8 @@ ARG DOCKER_UID
 ARG DOCKER_GID
 
 COPY php_additional_install.sh .
-RUN php_additional_install.sh
+
+RUN chmod u+x php_additional_install.sh && ./php_additional_install.sh
 
 RUN useradd dockeruser --uid ${DOCKER_UID} --gid ${DOCKER_GID} -m -s /bin/bash \
     && mkdir -p ${APP_BASE_DIR} \
