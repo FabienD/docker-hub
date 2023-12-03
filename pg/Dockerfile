@@ -16,11 +16,11 @@ RUN curl -s https://api.github.com/repos/Qovery/replibyte/releases/latest | \
     mv replibyte /usr/local/bin/
 
 
-FROM timescale/timescaledb:latest-pg${PG_VERSION} as timescale
+FROM timescale/timescaledb:latest-pg${PG_VERSION} as timescaledb
 
 COPY --from=base /usr/local/bin/replibyte /usr/local/bin/replibyte
 
 
-FROM postgres:${PG_VERSION} as postgres
+FROM postgres:${PG_VERSION} as postgresql
 
 COPY --from=base /usr/local/bin/replibyte /usr/local/bin/replibyte

@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  just_build:
+  just_build_and_push:
     parameters:
       BUILD_VERSION: 
         type: string
@@ -34,64 +34,88 @@ jobs:
 workflows:
   build_images:
     jobs:
-      - start_python:
-          name: Build Python ?
+      - start_postgres:
+          name: Build & Push PostgreSQL ?
           type: approval
-      - just_build:
-          name: Build Python << matrix.BUILD_VERSION >>
+      - just_build_and_push:
+          name: Build & Push PostgreSQL << matrix.BUILD_VERSION >>
           requires:
-            - Build Python ?
+            -  Build & Push PostgreSQL ?
           matrix:
             parameters:
-              BUILD_VERSION: ["3.12"]
+              BUILD_VERSION: ["15", "16"]
+              BUILD_TYPE: ["postgres"]
+
+      - start_timescaledb:
+          name: Build & Push TimescaleDB ?
+          type: approval
+      - just_build_and_push:
+          name: Build & Push TimescaleDB << matrix.BUILD_VERSION >>
+          requires:
+            -  Build & Push TimescaleDB ?
+          matrix:
+            parameters:
+              BUILD_VERSION: ["15", "16"]
+              BUILD_TYPE: ["timescaledb"]
+
+      - start_python:
+          name: Build & Push Python ?
+          type: approval
+      - just_build_and_push:
+          name: Build & Push Python << matrix.BUILD_VERSION >>
+          requires:
+            -  Build & Push Python ?
+          matrix:
+            parameters:
+              BUILD_VERSION: ["3.11", "3.12"]
               BUILD_TYPE: ["python"]
 
       - start_node:
-          name: Build Node ?
+          name: Build & Push Node ?
           type: approval
-      - just_build:
-          name: Build Node << matrix.BUILD_VERSION >>
+      - just_build_and_push:
+          name:  Build & Push Node << matrix.BUILD_VERSION >>
           requires:
-            - Build Node ?
+            -  Build & Push Node ?
           matrix:
             parameters:
-              BUILD_VERSION: ["18"]
+              BUILD_VERSION: ["18", "20"]
               BUILD_TYPE: ["node"]
 
       - start_php_fpm:
-          name: Build PHP FPM ?
+          name: Build & Push PHP FPM ?
           type: approval
-      - just_build:
-          name: Build PHP FPM << matrix.BUILD_VERSION >>
+      - just_build_and_push:
+          name: Build & Push PHP FPM << matrix.BUILD_VERSION >>
           requires:
-            - Build PHP FPM ?
+            - Build & Push PHP FPM ?
           matrix:
             parameters:
-              BUILD_VERSION: ["8.3"]
+              BUILD_VERSION: ["8.1", "8.2", "8.3"]
               BUILD_TYPE: ["php_fpm"]
 
       - start_php_fpm_dev:
-          name: Build PHP FPM dev ?
+          name: Build & Push PHP FPM dev ?
           type: approval
-      - just_build:
-          name: Build PHP FPM Dev << matrix.BUILD_VERSION >>
+      - just_build_and_push:
+          name: Build & Push PHP FPM Dev << matrix.BUILD_VERSION >>
           requires:
-            - Build PHP FPM dev ?
-            - Build PHP FPM << matrix.BUILD_VERSION >>
+            - Build & Push PHP FPM dev ?
+            - BuiBuild & Pushld PHP FPM << matrix.BUILD_VERSION >>
           matrix:
             parameters:
-              BUILD_VERSION: ["8.3"]
+              BUILD_VERSION: ["8.1", "8.2", "8.3"]
               BUILD_TYPE: ["dev"]
 
       - start_php_cli:
-          name: Build PHP CLI ?
+          name: Build & Push PHP CLI ?
           type: approval
-      - just_build:
+      - just_build_and_push:
           requires:
-            - Build PHP CLI ?
+            - Build & Push PHP CLI ?
           matrix:
             parameters:
-              BUILD_VERSION: ["8.3"]
+              BUILD_VERSION: ["8.1", "8.2", "8.3"]
               BUILD_TYPE: ["cli"]
         
           

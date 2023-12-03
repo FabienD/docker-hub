@@ -59,13 +59,13 @@ push_python BUILD_VERSION:
 	docker push myprod/py:{{BUILD_VERSION}}
 
 # Build PG 14x, 15x, 16x images
-build_pg BUILD_VERSION:
+build_postgresql BUILD_VERSION:
 	#!/usr/bin/env bash
 	cd {{pg_path}}
 	echo 'Build postgres:{{BUILD_VERSION}}'
-	docker build . -t myprod/db:pg-{{BUILD_VERSION}} --rm --target=postgres --build-arg PG_VERSION={{BUILD_VERSION}}
+	docker build . -t myprod/db:pg-{{BUILD_VERSION}} --rm --target=postgresql --build-arg PG_VERSION={{BUILD_VERSION}}
 
-push_pg BUILD_VERSION:
+push_postgresql BUILD_VERSION:
 	#!/usr/bin/env bash
 	cd {{pg_path}}
 	echo 'Push Pg:{{BUILD_VERSION}}'
@@ -76,7 +76,7 @@ build_timescaledb BUILD_VERSION:
 	#!/usr/bin/env bash
 	cd {{pg_path}}
 	echo 'Build Timescale:{{BUILD_VERSION}}'
-	docker build . -t myprod/db:ts-{{BUILD_VERSION}} --rm --target=timescale --build-arg PG_VERSION={{BUILD_VERSION}}
+	docker build . -t myprod/db:ts-{{BUILD_VERSION}} --rm --target=timescaledb --build-arg PG_VERSION={{BUILD_VERSION}}
 
 push_timescaledb BUILD_VERSION:
 	#!/usr/bin/env bash
