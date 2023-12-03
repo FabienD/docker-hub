@@ -1,10 +1,13 @@
 ARG PG_VERSION
 
-FROM debian:bookworm-slim as replibyte
+FROM debian:bookworm as replibyte
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    curl wget jq
+    ca-certificates \
+    curl \
+    wget \
+    jq
 
 # Install Replibyte
 RUN curl -s https://api.github.com/repos/Qovery/replibyte/releases/latest | \
