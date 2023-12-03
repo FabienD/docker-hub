@@ -101,7 +101,7 @@ workflows:
           name: Build & Push PHP FPM Dev << matrix.BUILD_VERSION >>
           requires:
             - Build & Push PHP FPM dev ?
-            - BuiBuild & Pushld PHP FPM << matrix.BUILD_VERSION >>
+            - Build & Push PHP FPM << matrix.BUILD_VERSION >>
           matrix:
             parameters:
               BUILD_VERSION: ["8.1", "8.2", "8.3"]
