@@ -106,7 +106,7 @@ workflows:
           matrix:
             parameters:
               BUILD_VERSION: ["8.1", "8.2", "8.3"]
-              BUILD_TYPE: ["dev"]
+              BUILD_TYPE: ["php_dev"]
 
       - start_php_cli:
           name: Build & Push PHP CLI ?
@@ -118,6 +118,6 @@ workflows:
           matrix:
             parameters:
               BUILD_VERSION: ["8.1", "8.2", "8.3"]
-              BUILD_TYPE: ["cli"]
+              BUILD_TYPE: ["php_cli"]
         
           
