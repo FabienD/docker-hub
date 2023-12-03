@@ -29,6 +29,7 @@ jobs:
       - run:
           name: Push Docker image
           command: |
+            echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
             just push_<< parameters.BUILD_TYPE >> << parameters.BUILD_VERSION >>
 
 workflows:
