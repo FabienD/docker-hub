@@ -111,6 +111,7 @@ workflows:
           name: Build & Push PHP CLI ?
           type: approval
       - just_build_and_push:
+          name: Build & Push PHP Cli << matrix.BUILD_VERSION >>
           requires:
             - Build & Push PHP CLI ?
           matrix:
