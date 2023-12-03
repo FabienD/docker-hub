@@ -1,26 +1,28 @@
 ARG PG_VERSION
 
-FROM debian:slim-bookworm as base
+FROM debian:bookworm as replibyte
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        curl \
-        wget \
-        jq
+    ca-certificates \
+    curl \
+    wget \
+    jq
 
+# Install Replibyte
 RUN curl -s https://api.github.com/repos/Qovery/replibyte/releases/latest | \
     jq -r '.assets[].browser_download_url' | \
-    grep -i 'linux-musl.tar.gz$' | wget -qi - && \
-    tar zxf *.tar.gz && \
-    chmod +x replibyte && \
-    mv replibyte /usr/local/bin/
+    grep -i 'linux-musl.tar.gz$' | wget -qi - \
+    && tar zxf *.tar.gz \ 
+    && chmod +x replibyte \
+    && mv replibyte /usr/local/bin/
 
 
-FROM timescale/timescaledb:latest-pg${PG_VERSION} as timescale
+FROM timescale/timescaledb:latest-pg${PG_VERSION} as timescaledb
 
-COPY --from=base /usr/local/bin/replibyte /usr/local/bin/replibyte
+COPY --from=replibyte /usr/local/bin/replibyte /usr/local/bin/replibyte
 
 
-FROM postgres:${PG_VERSION} as postgres
+FROM postgres:${PG_VERSION} as postgresql
 
-COPY --from=base /usr/local/bin/replibyte /usr/local/bin/replibyte
+COPY --from=replibyte /usr/local/bin/replibyte /usr/local/bin/replibyte
