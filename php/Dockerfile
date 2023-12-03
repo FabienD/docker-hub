@@ -36,7 +36,8 @@ RUN chmod u+x php_additional_install.sh && ./php_additional_install.sh
 
 ADD php-fpm.ini /usr/local/etc/php/conf.d/
 
-RUN useradd dockeruser --uid ${DOCKER_UID} --gid ${DOCKER_GID} -m -s /bin/bash \
+RUN groupadd dockeruser --gid ${DOCKER_GID} \ 
+    && useradd dockeruser --uid ${DOCKER_UID} --gid ${DOCKER_GID} -m -s /bin/bash \
     && mkdir -p ${APP_BASE_DIR} \
     && echo 'export PS1=" 🐘 ${PHP_VERSION} | \[\033[1;35m\]\h \[\033[1;34m\]\W\[\033[0;94m\] \[\033[1;35m\]# \[\033[0m\]"'  \
     >> /home/dockeruser/.bashrc
@@ -58,7 +59,8 @@ COPY php_additional_install.sh .
 
 RUN chmod u+x php_additional_install.sh && ./php_additional_install.sh
 
-RUN useradd dockeruser --uid ${DOCKER_UID} --gid ${DOCKER_GID} -m -s /bin/bash \
+RUN groupadd dockeruser --gid ${DOCKER_GID} \ 
+    && useradd dockeruser --uid ${DOCKER_UID} --gid ${DOCKER_GID} -m -s /bin/bash \
     && mkdir -p ${APP_BASE_DIR} \
     && echo 'export PS1=" 🐘 ${PHP_VERSION} | \[\033[1;35m\]\h \[\033[1;34m\]\W\[\033[0;94m\] \[\033[1;35m\]# \[\033[0m\]"'  \
     >> /home/dockeruser/.bashrc
