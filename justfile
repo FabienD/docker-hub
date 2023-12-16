@@ -3,8 +3,8 @@ PATH_PYTHON := "python"
 PATH_PG := "pg"
 PATH_NODE := "node"
 
-DOCKER_UID := env("DOCKER_UID", "1000")
-DOCKER_GID := env("DOCKER_GID", "1000")
+DOCKER_UID := env_var_or_default("DOCKER_UID", "1000")
+DOCKER_GID := env_var_or_default("DOCKER_GID", "1000")
 
 default: 
     just --list
