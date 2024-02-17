@@ -116,7 +116,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && pecl install -a apcu-5.1.23 \
     && pecl install -a imagick-3.7.0 \
     && pecl install -a grpc-1.61.0 \
-    && pecl install -a protobuf-3.25.3s \
+    && pecl install -a protobuf-3.25.3 \
     && pecl install -a redis-6.0.2 \
     && pecl install -a memcached-3.2.0 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
