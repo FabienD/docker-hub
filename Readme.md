@@ -3,7 +3,7 @@
 ## List of Docker images
 
  - PHP 8.1, 8.2, 8.3
- - Python 3.10, 3.11, 3.12
+ - Python 3.11, 3.12
  - Node 18, 20
  - Pg (Postgres 16, 17 or TimescaleDB 16, 17 with [Replibyte](https://www.replibyte.com/))
 
