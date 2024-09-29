@@ -5,7 +5,7 @@
  - PHP 8.1, 8.2, 8.3
  - Python 3.10, 3.11, 3.12
  - Node 18, 20
- - Pg (Postgres 16 or TimescaleDB 16 with [Replibyte](https://www.replibyte.com/))
+ - Pg (Postgres 16, 17 or TimescaleDB 16, 17 with [Replibyte](https://www.replibyte.com/))
 
 Images can be found on [Docker Hub](https://hub.docker.com/u/myprod)
 
