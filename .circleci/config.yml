@@ -44,7 +44,7 @@ workflows:
             -  Build & Push PostgreSQL ?
           matrix:
             parameters:
-              BUILD_VERSION: ["15", "16"]
+              BUILD_VERSION: ["16", "17"]
               BUILD_TYPE: ["postgresql"]
 
       - start_timescaledb:
@@ -56,7 +56,7 @@ workflows:
             -  Build & Push TimescaleDB ?
           matrix:
             parameters:
-              BUILD_VERSION: ["15", "16"]
+              BUILD_VERSION: ["16", "17"]
               BUILD_TYPE: ["timescaledb"]
 
       - start_python:

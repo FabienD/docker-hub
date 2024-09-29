@@ -55,10 +55,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
-    && pecl install -a apcu-5.1.23 \
+    && pecl install -a apcu-5.1.24 \
     && pecl install -a imagick-3.7.0 \
-    && pecl install -a grpc-1.61.0 \
-    && pecl install -a protobuf-3.25.3 \
+    && pecl install -a grpc-1.66.0 \
+    && pecl install -a protobuf-4.28.2 \
     && pecl install -a redis-6.0.2 \
     && pecl install -a memcached-3.2.0 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -113,10 +113,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
-    && pecl install -a apcu-5.1.23 \
+    && pecl install -a apcu-5.1.24 \
     && pecl install -a imagick-3.7.0 \
-    && pecl install -a grpc-1.65.0 \
-    && pecl install -a protobuf-4.27.2 \
+    && pecl install -a grpc-1.66.0 \
+    && pecl install -a protobuf-4.28.2 \
     && pecl install -a redis-6.0.2 \
     && pecl install -a memcached-3.2.0 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
