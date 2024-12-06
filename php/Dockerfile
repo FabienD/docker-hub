@@ -57,10 +57,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.24 \
     && pecl install -a imagick-3.7.0 \
-    && pecl install -a grpc-1.66.0 \
-    && pecl install -a protobuf-4.28.2 \
-    && pecl install -a redis-6.0.2 \
-    && pecl install -a memcached-3.2.0 \
+    && pecl install -a grpc-1.68.0 \
+    && pecl install -a protobuf-4.29.1 \
+    && pecl install -a redis-6.1.0 \
+    && pecl install -a memcached-3.3.0 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
@@ -115,10 +115,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.24 \
     && pecl install -a imagick-3.7.0 \
-    && pecl install -a grpc-1.66.0 \
-    && pecl install -a protobuf-4.28.2 \
-    && pecl install -a redis-6.0.2 \
-    && pecl install -a memcached-3.2.0 \
+    && pecl install -a grpc-1.68.0 \
+    && pecl install -a protobuf-4.29.1 \
+    && pecl install -a redis-6.1.0 \
+    && pecl install -a memcached-3.3.0 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
@@ -147,16 +147,16 @@ RUN export VERSION=`php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"` \
     && echo "extension=blackfire.so\nblackfire.agent_socket='tcp://blackfire:8707'" > $PHP_INI_DIR/conf.d/blackfire.ini
 
 # Xdebug install
-RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/3.3.2.zip' -o xdebug.zip \
+RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/3.4.0.zip' -o xdebug.zip \
     && unzip xdebug.zip \
     && ( \
-        cd xdebug-3.3.2 \
+        cd xdebug-3.4.0 \
         && phpize \
         && ./configure --enable-xdebug \
         && make -j$(nproc) \
         && make install \
     ) \
-    && rm -r xdebug-3.3.2 \
+    && rm -r xdebug-3.4.0 \
     && docker-php-ext-enable xdebug
 
 ADD php-dev.ini /usr/local/etc/php/conf.d/

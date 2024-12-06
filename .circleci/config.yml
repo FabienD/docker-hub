@@ -68,7 +68,7 @@ workflows:
             -  Build & Push Python ?
           matrix:
             parameters:
-              BUILD_VERSION: ["3.11", "3.12"]
+              BUILD_VERSION: ["3.11", "3.12", "3.13"]
               BUILD_TYPE: ["python"]
 
       - start_node:
@@ -92,7 +92,7 @@ workflows:
             - Build & Push PHP FPM ?
           matrix:
             parameters:
-              BUILD_VERSION: ["8.1", "8.2", "8.3"]
+              BUILD_VERSION: ["8.1", "8.2", "8.3", "8.4"]
               BUILD_TYPE: ["php_fpm"]
 
       - start_php_fpm_dev:
@@ -105,7 +105,7 @@ workflows:
             - Build & Push PHP FPM << matrix.BUILD_VERSION >>
           matrix:
             parameters:
-              BUILD_VERSION: ["8.1", "8.2", "8.3"]
+              BUILD_VERSION: ["8.1", "8.2", "8.3", "8.4"]
               BUILD_TYPE: ["php_dev"]
 
       - start_php_cli:
@@ -117,7 +117,7 @@ workflows:
             - Build & Push PHP CLI ?
           matrix:
             parameters:
-              BUILD_VERSION: ["8.1", "8.2", "8.3"]
+              BUILD_VERSION: ["8.1", "8.2", "8.3", "8.4"]
               BUILD_TYPE: ["php_cli"]
         
           
