@@ -42,7 +42,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libxslt-dev \
         libssh2-1-dev \
         libonig-dev \
-        libmagickwand-dev \
         libmemcached-dev \
         ssh \
         git \
@@ -56,7 +55,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.24 \
-    && pecl install -a imagick-3.7.0 \
     && pecl install -a grpc-1.68.0 \
     && pecl install -a protobuf-4.29.1 \
     && pecl install -a redis-6.1.0 \
@@ -66,7 +64,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql \
     && docker-php-ext-install zip bcmath intl exif xsl sockets \
-    && docker-php-ext-enable apcu imagick grpc protobuf redis memcached
+    && docker-php-ext-enable apcu grpc protobuf redis memcached
 
 ADD php-fpm.ini /usr/local/etc/php/conf.d/
 
@@ -100,7 +98,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libxslt-dev \
         libssh2-1-dev \
         libonig-dev \
-        libmagickwand-dev \
         libmemcached-dev \
         ssh \
         git \
@@ -114,7 +111,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.24 \
-    && pecl install -a imagick-3.7.0 \
     && pecl install -a grpc-1.68.0 \
     && pecl install -a protobuf-4.29.1 \
     && pecl install -a redis-6.1.0 \
@@ -124,7 +120,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && docker-php-ext-install -j$(nproc) gd opcache mbstring \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql \
     && docker-php-ext-install zip bcmath intl exif xsl sockets \
-    && docker-php-ext-enable apcu imagick grpc protobuf redis memcached
+    && docker-php-ext-enable apcu grpc protobuf redis memcached
 
 RUN groupadd dockeruser --gid ${DOCKER_GID} \ 
     && useradd dockeruser --uid ${DOCKER_UID} --gid ${DOCKER_GID} -m -s /bin/bash \
