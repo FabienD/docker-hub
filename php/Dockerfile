@@ -54,9 +54,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.24 \
-    && pecl install -a grpc-1.70.0 \
-    && pecl install -a protobuf-4.30.0 \
-    && pecl install -a redis-6.1.0 \
+    && pecl install -a grpc-1.72.0 \
+    && pecl install -a protobuf-4.31.1 \
+    && pecl install -a redis-6.2.0 \
     && pecl install -a memcached-3.3.0 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
@@ -110,9 +110,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install -a apcu-5.1.24 \
-    && pecl install -a grpc-1.70.0 \
-    && pecl install -a protobuf-4.30.0 \
-    && pecl install -a redis-6.1.0 \
+    && pecl install -a grpc-1.72.0 \
+    && pecl install -a protobuf-4.31.1 \
+    && pecl install -a redis-6.2.0 \
     && pecl install -a memcached-3.3.0 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
@@ -142,16 +142,16 @@ RUN export VERSION=`php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"` \
     && echo "extension=blackfire.so\nblackfire.agent_socket='tcp://blackfire:8707'" > $PHP_INI_DIR/conf.d/blackfire.ini
 
 # Xdebug install
-RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/3.4.1.zip' -o xdebug.zip \
+RUN curl -fsSL 'https://github.com/xdebug/xdebug/archive/3.4.3.zip' -o xdebug.zip \
     && unzip xdebug.zip \
     && ( \
-        cd xdebug-3.4.1 \
+        cd xdebug-3.4.3 \
         && phpize \
         && ./configure --enable-xdebug \
         && make -j$(nproc) \
         && make install \
     ) \
-    && rm -r xdebug-3.4.1 \
+    && rm -r xdebug-3.4.3 \
     && docker-php-ext-enable xdebug
 
 ADD php-dev.ini /usr/local/etc/php/conf.d/
